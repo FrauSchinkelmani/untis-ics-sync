@@ -2,7 +2,7 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Cache } from 'cache-manager';
-import * as moment from 'moment';
+import moment from 'moment';
 import {
   Holiday,
   Klasse,
@@ -109,8 +109,9 @@ export class UntisService {
         await this.validateSession();
 
         return await this.fetchTimetableRange(
-          moment().subtract(before, 'days').toDate(),
-          moment().add(after, 'days').toDate(),
+                    (moment as any)().subtract(before, 'days').toDate(),
+          (moment as any)().add(after, 'days').toDate(),
+
           classId,
         );
       },
